@@ -1,0 +1,230 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{textpos}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{animate}
+\usepackage{comment}
+%\usepackage{multicol}
+%\setlength{\columnsep}{5cm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage{varwidth}
+\usepackage{caption}
+\usepackage{dcolumn}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{physics}
+\usepackage{hyperref}
+\usepackage{scalerel,stackengine}
+%\usepackage{fancyvrb}
+\usepackage{enumitem}
+\setlist[itemize]{label=\textbullet}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+%\setbeamertemplate{itemize items}[circle]
+%\setbeamertemplate{itemize subitem}[square]
+
+\usefonttheme[onlymath]{serif}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\shp}{$>>>$ }
+\newcommand{\tab}{\hspace*{22pt}}
+
+\usetheme{Madrid}
+
+\title{Overview of Machine Learning and Predictive Modeling}
+%\author{DATA 3550}
+\date{}
+
+%\institute{MTSU}
+ 
+
+
+%%%%%%%%% BEGIN DOCUMENT %%%%%%%%%
+%%%%%%%%% BEGIN DOCUMENT %%%%%%%%%
+%%%%%%%%% BEGIN DOCUMENT %%%%%%%%%
+
+\begin{document}
+
+% get title page 
+\frame{\titlepage}
+
+
+\begin{frame}
+	\frametitle{Overview of ML}
+	
+	\begin{alertblock}{What is ML:}
+		\footnotesize
+		\textbf{Machine learning} is a field of data science/statistics/artificial intelligence which involves creating \textbf{models} to enable computers to ``learn'' patterns in data and make predictions based on these patterns
+		\begin{itemize}
+			\item A model is a function which can map input data to output data: \\
+			$f($input$) = $ output
+%			\item Using a dataset of inputs/outputs to learn from, the model can learn the patterns (i.e., find a function $f$) and then, when given new input data, predict its output
+			\item \textbf{Predictive modeling} is a subfield of ML focused on making predictions about the future
+		\end{itemize}
+		
+		\vspace{10pt}
+		Example: create a model to predict real estate prices
+		\begin{itemize}
+			\item Input data: square footage, location, age, number of bedrooms, etc.
+			\item Output data: the price (a continuous value)
+		\end{itemize}
+		
+		\vspace{10pt}
+		Example: predict whether a patient has cancer
+		\begin{itemize}
+			\item Input data: age, gender, BMI, family history, environmental factors, etc.
+			\item Output data: does/doesn't have cancer (a discrete label)
+		\end{itemize}
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}	
+	\frametitle{Overview of ML}
+	
+	\begin{block}{Some ML terms:}
+		\scriptsize
+		\begin{itemize}[itemindent=4.0em]
+			\item[Dataset:] a collection of inputs/outputs
+			\item[Samples:] entries in the dataset
+			\item[] (rows in the dataset)
+			\item[Features:] the input data (usually $X$, a 2D array $(N_{samp},N_{feat})$)
+			\item[] (columns in the dataset)
+			\item[] (sometimes called predictors)
+			\item[Labels:] the output data (usually $y$, a 1D array $(N_{samp})$) \\
+			\item[] (sometimes called ``target'')
+			\item[] (a special column in the dataset)
+			\item[Model:] a function $f$ which predicts labels based on features
+			\item[Training:] the process by which the model ``learns'' the patterns in a dataset
+			\item[Testing:] the process by which a model's performance/accuracy is evaluated
+			\item[Loss function:] a function which evaluates the amount of error in the model
+			\item[] (sometimes called error, must be minimized)
+			\item[] (training is minimizing the loss function)
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}	
+	\frametitle{Overview of ML}
+	
+	\begin{block}{A Taxonomy of ML (pt 1):}
+		\footnotesize
+		One way to classify the different types of ML is based on the nature of the task (i.e., the features and labels):
+		\begin{itemize}%[itemindent=1em, align=left]
+			\item Supervised learning: a type of learning where the dataset has features AND labels and the goal is to predict the labels based on the features 
+			\begin{itemize}
+				\item Regression (label is continuous)
+				\item Classification (label is categorical/discrete)
+			\end{itemize}
+			\item Unsupervised learning: a type of learning where the dataset ONLY has features and the goal is to assign a set of reasonable labels
+			\begin{itemize}
+				\item Clustering
+			\end{itemize}
+			\item Generative learning:a type of learning that models the distribution of the data so that similar data can be generated (terms features/labels aren't used as much)
+			\begin{itemize}
+				\item AI chatbots
+				\item AI image generators
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}	
+	\frametitle{Overview of ML}
+	
+	\begin{block}{A Taxonomy of ML (pt 2):}
+		\footnotesize
+		Another way to classify ML methods is based on the nature of the algorithms used:
+		\begin{itemize}%[itemindent=1em, align=left]
+			\item Linear models: model the relationship between features/labels using linear equations (e.g., linear regression and logistic regression)
+			\item Instance-based learning: makes predictions based on the similarity of new instances to existing data points (e.g., $k$-nearest neighbors )
+			\item Tree-based methods: use decision trees as the fundamental building block (e.g., decision trees, random forests, and gradient boosting)
+			\item Ensemble methods: combine multiple models to improve overall performance (e.g., bagging and boosting)
+			\item Deep learning: uses neural networks with multiple layers (e.g., dense NN, convolutional NN, recurrent NN, LSTM's, transformers)
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}	
+	\frametitle{Overview of ML}
+	
+	\begin{block}{Python libraries for data processing:}
+		\begin{itemize}%[itemindent=1em, align=left]
+			\item NumPy, SciPy
+			\item Pandas
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Python libraries for visualization:}
+		\begin{itemize}%[itemindent=1em, align=left]
+			\item Matplotlib, Seaborn
+			\item Plotly, Bokeh
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Python libraries for ML:}
+		\begin{itemize}%[itemindent=1em, align=left]
+			\item Scikit-learn
+			\item Statsmodels
+			\item Tensorflow/Keras, PyTorch (neural networks)
+			\item XGBoost, LightGBM (gradient boosting)
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}	
+	\frametitle{Overview of ML}
+	
+	\begin{block}{Garbage in, garbage out:}
+		No matter how clever and advanced a model is, if it is given bad data...
+		\begin{itemize}
+			\item useless features that don't realte to the labels
+			\item not enough features
+			\item missing values, errors in data
+			\item insufficient number of samples
+			\item too little variety (not all possible cases are covered)
+			\item trying to predict beyond the scope of the data (extrapolating)
+		\end{itemize}
+		then it will make poor predictions
+		
+%		\vspace{10pt}
+%		Thus, \textbf{data preprocessing} is a critical step
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{CRISP-DM}
+	
+	\begin{block}{How to ML:}
+		So, what is the correct way to perform ML and (more broadly) data science in general and avoid these and other pitfalls?
+		
+		\vspace{10pt}
+		CRISP-DM: CRoss-Industry Standard Process for Data Mining
+		\begin{itemize}
+			\item a widely-used methodology for data mining and analytics projects
+			\item provides a structured approach to guide the entire DS/ML process
+			\item an iterative 6-step process, allowing for revisiting and refining at each step
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
+
